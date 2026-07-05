@@ -1,5 +1,9 @@
 import express from "express";
 import { sql } from "./db.js";
+import { categoriesRouter } from "./routes/categories.js";
+import { menuItemsRouter } from "./routes/menu-items.js";
+import { publicRouter } from "./routes/public.js";
+import { restaurantsRouter } from "./routes/restaurants.js";
 
 const PORT = Number(process.env.PORT || 4002);
 const app = express();
@@ -16,6 +20,11 @@ app.get("/health", async (_req, res) => {
       .json({ status: "degraded", service: "menu-service", db: "down" });
   }
 });
+
+app.use("/api/categories", categoriesRouter);
+app.use("/api/menu_items", menuItemsRouter);
+app.use("/api/restaurants", restaurantsRouter);
+app.use("/api/public", publicRouter);
 
 app.use((_req, res) => res.status(404).json({ error: "Not found" }));
 
