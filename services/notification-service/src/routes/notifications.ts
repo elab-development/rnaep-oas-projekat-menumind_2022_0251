@@ -1,8 +1,20 @@
 import { Router } from "express";
 import { requireRestaurantAdmin, wrap } from "../lib/auth.js";
+import { buildRecommendationNotification } from "../messages.js";
 import { notifications } from "../mongo.js";
 
 export const notificationsRouter = Router();
+
+notificationsRouter.post(
+  "/internal/recommendation",
+  wrap(async (req, res) => {
+    const notification = buildRecommendationNotification(req.body);
+    const collection = await notifications();
+    await collection.insertOne({ ...notification, createdAt: new Date() });
+    res.json({ success: true });
+  }),
+);
+
 notificationsRouter.use(requireRestaurantAdmin);
 
 notificationsRouter.get(
@@ -27,3 +39,12 @@ notificationsRouter.get(
     );
   }),
 );
+
+export const internalRouter = Router();
+internalRouter.post("/recommendation", wrap(async (req, res) => {
+  const notification = buildRecommendationNotification(req.body);
+  const collection = await notifications();
+  await collection.insertOne({ ...notification, createdAt: new Date() });
+  res.json({ success: true });
+}));
+
