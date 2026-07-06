@@ -22,5 +22,10 @@ export function buildRoutes(): RouteEntry[] {
       ],
       target: process.env.MENU_SERVICE_URL || "http://localhost:4002",
     },
+    {
+      name: "media-service",
+      pathFilter: ["/api/cloudinary"],
+      target: process.env.MEDIA_SERVICE_URL || "http://localhost:4006",
+    },
   ];
 }
