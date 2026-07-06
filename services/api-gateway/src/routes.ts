@@ -27,5 +27,10 @@ export function buildRoutes(): RouteEntry[] {
       pathFilter: ["/api/cloudinary"],
       target: process.env.MEDIA_SERVICE_URL || "http://localhost:4006",
     },
+    {
+      name: "recommendation-service",
+      pathFilter: ["/api/chat"],
+      target: process.env.RECOMMENDATION_SERVICE_URL || "http://localhost:4003",
+    },
   ];
 }
