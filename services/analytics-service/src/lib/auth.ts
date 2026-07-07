@@ -1,9 +1,3 @@
-// Session introspection against the Auth Service, protected by a circuit
-// breaker (Opossum). Shared (by copy) across MenuMind services.
-//
-// Distinguishes two failure modes:
-//   - no/invalid session      -> 401 (same behavior as the monolith)
-//   - auth-service unreachable -> 503 fail-fast via the open breaker
 import type { NextFunction, Request, RequestHandler, Response } from "express";
 import CircuitBreaker from "opossum";
 import { trackBreaker } from "./metrics.js";

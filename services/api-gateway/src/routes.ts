@@ -23,24 +23,24 @@ export function buildRoutes(): RouteEntry[] {
       target: process.env.MENU_SERVICE_URL || "http://localhost:4002",
     },
     {
-      name: "media-service",
-      pathFilter: ["/api/cloudinary"],
-      target: process.env.MEDIA_SERVICE_URL || "http://localhost:4006",
-    },
-    {
       name: "recommendation-service",
       pathFilter: ["/api/chat"],
       target: process.env.RECOMMENDATION_SERVICE_URL || "http://localhost:4003",
     },
     {
-      name: "notification-service",
-      pathFilter: ["/api/notifications"],
-      target: process.env.NOTIFICATION_SERVICE_URL || "http://localhost:4004",
-    },
-    {
       name: "analytics-service",
       pathFilter: ["/api/analytics"],
-      target: process.env.ANALYTICS_SERVICE_URL || "http://localhost:4005",
+      target: process.env.ANALYTICS_SERVICE_URL || "http://localhost:4004",
+    },
+    {
+      name: "notification-service",
+      pathFilter: ["/api/notifications"],
+      target: process.env.NOTIFICATION_SERVICE_URL || "http://localhost:4005",
+    },
+    {
+      name: "media-service",
+      pathFilter: ["/api/cloudinary"],
+      target: process.env.MEDIA_SERVICE_URL || "http://localhost:4006",
     },
   ];
 }

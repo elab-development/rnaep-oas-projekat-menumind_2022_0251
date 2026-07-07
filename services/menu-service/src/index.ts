@@ -1,5 +1,6 @@
 import express from "express";
 import { sql } from "./db.js";
+import { setupMetrics } from "./lib/metrics.js";
 import { categoriesRouter } from "./routes/categories.js";
 import { menuItemsRouter } from "./routes/menu-items.js";
 import { nutritionRouter } from "./routes/nutrition.js";
@@ -10,6 +11,8 @@ const PORT = Number(process.env.PORT || 4002);
 const app = express();
 app.disable("x-powered-by");
 app.use(express.json({ limit: "1mb" }));
+
+setupMetrics(app, "menu-service");
 
 app.get("/health", async (_req, res) => {
   try {
