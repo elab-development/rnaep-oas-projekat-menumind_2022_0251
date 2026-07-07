@@ -49,6 +49,25 @@ chatRouter.post("/", async (req, res) => {
   let reply: string;
   try {
     reply = await generateChatReply({ system, messages: messages as never });
+
+    const NOTIFICATION_SERVICE_URL =
+      process.env.NOTIFICATION_SERVICE_URL || "http://localhost:4005";
+
+    fetch(
+      `${NOTIFICATION_SERVICE_URL}/api/notifications/internal/recommendation`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          restaurantId: null,
+          itemName: restaurantName,
+          suggestion: reply.slice(0, 200),
+          source: "gemini",
+        }),
+      },
+    ).catch((err) =>
+      console.warn(`[chat] notification-service unreachable: ${err.message}`),
+    );
   } catch (err) {
     console.warn(
       `[chat] gemini unavailable (${(err as Error).message}), using heuristic fallback`,
