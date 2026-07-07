@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  frontend:
+    name: Frontend (lint, test, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+      - run: pnpm test
+      - run: pnpm run build
+
+  services:
+    name: ${{ matrix.service.name }} (lint, test)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - name: api-gateway
+            path: services/api-gateway
+            install: npm ci
+            lint: npm run lint
+          - name: auth-service
+            path: services/auth-service
+            install: npm ci
+            lint: npm run lint
+          - name: menu-service
+            path: services/menu-service
+            install: npm ci
+            lint: ""
+          - name: recommendation-service
+            path: services/recommendation-service
+            install: npm install --no-package-lock
+            lint: ""
+          - name: analytics-service
+            path: services/analytics-service
+            install: npm install --no-package-lock
+            lint: npm run lint
+          - name: notification-service
+            path: services/notification-service
+            install: npm install --no-package-lock
+            lint: ""
+          - name: media-service
+            path: services/media-service
+            install: npm install --no-package-lock
+            lint: ""
+    defaults:
+      run:
+        working-directory: ${{ matrix.service.path }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: ${{ matrix.service.install }}
+      - run: ${{ matrix.service.lint }}
+        if: ${{ matrix.service.lint != '' }}
+      - run: npm run build
+      - run: npm test
+
+  compose:
+    name: Validate compose & docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose config -q
+
+  docker-publish:
+    name: Build & publish images
+    needs: [frontend, services, compose]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        service:
+          - name: frontend
+            context: .
+          - name: api-gateway
+            context: ./services/api-gateway
+          - name: auth-service
+            context: ./services/auth-service
+          - name: menu-service
+            context: ./services/menu-service
+          - name: recommendation-service
+            context: ./services/recommendation-service
+          - name: analytics-service
+            context: ./services/analytics-service
+          - name: notification-service
+            context: ./services/notification-service
+          - name: media-service
+            context: ./services/media-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.service.context }}
+          push: true
+          tags: ghcr.io/${{ github.repository }}/${{ matrix.service.name }}:latest
