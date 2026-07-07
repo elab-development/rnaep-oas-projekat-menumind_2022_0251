@@ -1,12 +1,16 @@
 import { v2 as cloudinary } from "cloudinary";
 import express from "express";
 import { requireRestaurantAdmin, wrap } from "./lib/auth.js";
+import { setupMetrics } from "./lib/metrics.js";
+
 import { buildSignParams } from "./sign.js";
 
 const PORT = Number(process.env.PORT || 4006);
 const app = express();
 app.disable("x-powered-by");
 app.use(express.json({ limit: "1mb" }));
+
+setupMetrics(app, "media-service");
 
 function cloudinaryEnv() {
   return {

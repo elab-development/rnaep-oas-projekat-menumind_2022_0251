@@ -1,11 +1,15 @@
 import express from "express";
+import { setupMetrics } from "./lib/metrics.js";
 import { ping } from "./mongo.js";
+
 import { internalRouter, notificationsRouter } from "./routes/notifications.js";
 
 const PORT = Number(process.env.PORT || 4005);
 const app = express();
 app.disable("x-powered-by");
 app.use(express.json({ limit: "1mb" }));
+
+setupMetrics(app, "notification-service");
 
 app.get("/health", async (_req, res) => {
   try {

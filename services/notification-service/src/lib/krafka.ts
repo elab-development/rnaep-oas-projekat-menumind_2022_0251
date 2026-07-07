@@ -1,4 +1,4 @@
-import { Kafka, logLevel, type Consumer } from "kafkajs";
+import { Consumer, Kafka, logLevel, Producer } from "kafkajs";
 import client from "prom-client";
 
 const kafkaMessagesProduced = new client.Counter({
@@ -19,12 +19,22 @@ const kafkaProduceErrors = new client.Counter({
   labelNames: ["topic"],
 });
 
-export type EventHandler = (
+export type KafkaMessageHandler = (
   topic: string,
-  payload: Record<string, unknown> | null,
-) => Promise<void>;
+  payload: unknown,
+) => void | Promise<void>;
 
-export function createKafkaClient(clientId: string) {
+export interface KafkaHelper {
+  kafka: Kafka;
+  publish: (topic: string, payload: unknown) => Promise<void>;
+  consume: (
+    groupId: string,
+    topics: string[],
+    handler: KafkaMessageHandler,
+  ) => Promise<Consumer>;
+}
+
+export function createKafkaClient(clientId: string): KafkaHelper {
   const brokers = (process.env.KAFKA_BROKERS || "localhost:9092").split(",");
   const kafka = new Kafka({
     clientId,
@@ -33,10 +43,10 @@ export function createKafkaClient(clientId: string) {
     retry: { initialRetryTime: 300, retries: 8 },
   });
 
-  let producer: ReturnType<typeof kafka.producer> | null = null;
+  let producer: Producer | null = null;
   let producerReady = false;
 
-  async function ensureProducer() {
+  async function ensureProducer(): Promise<Producer> {
     if (producerReady && producer) return producer;
     producer = kafka.producer({ allowAutoTopicCreation: true });
     await producer.connect();
@@ -47,7 +57,7 @@ export function createKafkaClient(clientId: string) {
     return producer;
   }
 
-  async function publish(topic: string, payload: unknown) {
+  async function publish(topic: string, payload: unknown): Promise<void> {
     try {
       const p = await ensureProducer();
       await p.send({
@@ -59,14 +69,15 @@ export function createKafkaClient(clientId: string) {
     } catch (err) {
       producerReady = false;
       kafkaProduceErrors.inc({ topic });
-      console.error(`[kafka] failed to produce ${topic}: ${(err as Error).message}`);
+      const message = err instanceof Error ? err.message : String(err);
+      console.error(`[kafka] failed to produce ${topic}: ${message}`);
     }
   }
 
   async function consume(
     groupId: string,
     topics: string[],
-    handler: EventHandler,
+    handler: KafkaMessageHandler,
   ): Promise<Consumer> {
     const consumer = kafka.consumer({ groupId });
     for (;;) {
@@ -77,7 +88,7 @@ export function createKafkaClient(clientId: string) {
         }
         await consumer.run({
           eachMessage: async ({ topic, message }) => {
-            let payload: Record<string, unknown> | null = null;
+            let payload: unknown = null;
             try {
               payload = JSON.parse(message.value?.toString() ?? "null");
             } catch {
@@ -88,14 +99,16 @@ export function createKafkaClient(clientId: string) {
             try {
               await handler(topic, payload);
             } catch (err) {
-              console.error(`[kafka] handler error on ${topic}: ${(err as Error).message}`);
+              const message = err instanceof Error ? err.message : String(err);
+              console.error(`[kafka] handler error on ${topic}: ${message}`);
             }
           },
         });
         return consumer;
       } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
         console.error(
-          `[kafka] consumer connect failed (${(err as Error).message}), retrying in 5s`,
+          `[kafka] consumer connect failed (${message}), retrying in 5s`,
         );
         await new Promise((r) => setTimeout(r, 5000));
       }

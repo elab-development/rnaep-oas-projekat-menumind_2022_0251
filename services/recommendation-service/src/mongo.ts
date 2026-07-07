@@ -6,7 +6,7 @@ const MONGODB_URI =
 
 let clientPromise: Promise<MongoClient> | null = null;
 
-async function connect() {
+async function connect(): Promise<MongoClient> {
   const client = new MongoClient(MONGODB_URI, {
     serverSelectionTimeoutMS: 3000,
   });
@@ -23,6 +23,11 @@ export async function getDb() {
   }
   const client = await clientPromise;
   return client.db();
+}
+
+export async function recommendationsCollection() {
+  const db = await getDb();
+  return db.collection("recommendations");
 }
 
 export async function pingDb() {

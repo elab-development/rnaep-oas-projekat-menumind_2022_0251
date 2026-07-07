@@ -1,0 +1,38 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: api-gateway
+    static_configs:
+      - targets: ["api-gateway:8080"]
+  - job_name: auth-service
+    static_configs:
+      - targets: ["auth-service:4001"]
+  - job_name: menu-service
+    static_configs:
+      - targets: ["menu-service:4002"]
+  - job_name: recommendation-service
+    static_configs:
+      - targets: ["recommendation-service:4003"]
+  - job_name: analytics-service
+    static_configs:
+      - targets: ["analytics-service:4004"]
+  - job_name: notification-service
+    static_configs:
+      - targets: ["notification-service:4005"]
+  - job_name: media-service
+    static_configs:
+      - targets: ["media-service:4006"]
+
+  - job_name: kafka
+    static_configs:
+      - targets: ["kafka-exporter:9308"]
+
+  - job_name: cadvisor
+    static_configs:
+      - targets: ["cadvisor:8080"]
