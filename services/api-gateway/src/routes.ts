@@ -32,5 +32,15 @@ export function buildRoutes(): RouteEntry[] {
       pathFilter: ["/api/chat"],
       target: process.env.RECOMMENDATION_SERVICE_URL || "http://localhost:4003",
     },
+    {
+      name: "notification-service",
+      pathFilter: ["/api/notifications"],
+      target: process.env.NOTIFICATION_SERVICE_URL || "http://localhost:4004",
+    },
+    {
+      name: "analytics-service",
+      pathFilter: ["/api/analytics"],
+      target: process.env.ANALYTICS_SERVICE_URL || "http://localhost:4005",
+    },
   ];
 }
