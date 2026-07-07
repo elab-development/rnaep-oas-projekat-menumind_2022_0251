@@ -103,6 +103,83 @@ importers:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@20.19.43)(jiti@2.7.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@20.19.43)(typescript@5.9.3))(tsx@4.23.0)(yaml@2.9.0)
 
+  services/api-gateway:
+    dependencies:
+      cors:
+        specifier: ^2.8.6
+        version: 2.8.6
+      express:
+        specifier: ^4.21.2
+        version: 4.22.2
+      express-rate-limit:
+        specifier: ^8.5.2
+        version: 8.5.2(express@4.22.2)
+      helmet:
+        specifier: ^8.2.0
+        version: 8.2.0
+      http-proxy-middleware:
+        specifier: ^3.0.3
+        version: 3.0.7
+      prom-client:
+        specifier: ^15.1.3
+        version: 15.1.3
+    devDependencies:
+      '@types/cors':
+        specifier: ^2.8.19
+        version: 2.8.19
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.25
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.0
+      '@types/opossum':
+        specifier: ^8.1.9
+        version: 8.1.9
+      tsx:
+        specifier: ^4.19.2
+        version: 4.23.0
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
+  services/auth-service:
+    dependencies:
+      better-auth:
+        specifier: ^1.4.18
+        version: 1.6.23(@opentelemetry/api@1.9.1)(mongodb@6.21.0)(pg@8.22.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vitest@3.2.7(@types/debug@4.1.13)(@types/node@20.19.43)(jiti@2.7.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@20.19.43)(typescript@5.9.3))(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.39(typescript@5.9.3))
+      express:
+        specifier: ^4.21.2
+        version: 4.22.2
+      kafkajs:
+        specifier: ^2.2.4
+        version: 2.2.4
+      pg:
+        specifier: ^8.13.1
+        version: 8.22.0
+      prom-client:
+        specifier: ^15.1.3
+        version: 15.1.3
+    devDependencies:
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.25
+      '@types/node':
+        specifier: ^20.14.10
+        version: 20.19.43
+      '@types/opossum':
+        specifier: ^8.1.9
+        version: 8.1.9
+      '@types/pg':
+        specifier: ^8.20.0
+        version: 8.20.0
+      tsx:
+        specifier: ^4.19.2
+        version: 4.23.0
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
   services/recommendation-service:
     dependencies:
       '@ai-sdk/google':
@@ -2181,6 +2258,9 @@ packages:
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
 
+  '@types/cors@2.8.19':
+    resolution: {integrity: sha512-mFNylyeyqN93lfe/9CSxOGREz8cpzAhH+E93xJ4xWQf62V8sQ/24reV2nyzUWM6H6Xji+GGHpkbLe7pVoUEskg==}
+
   '@types/d3-array@3.2.2':
     resolution: {integrity: sha512-hOLWVbm7uRza0BYXpIIW5pxfrKe0W+D5lrFiAEYR+pb6w3N2SwSMaJbXdUfSEv+dT4MfHBLtn5js0LAWaO6otw==}
 
@@ -2232,6 +2312,9 @@ packages:
   '@types/http-errors@2.0.5':
     resolution: {integrity: sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==}
 
+  '@types/http-proxy@1.17.17':
+    resolution: {integrity: sha512-ED6LB+Z1AVylNTu7hdzuBqOgMnvG/ld6wGCG8wFnAzKX5uyW2K3WD52v0gnLCTK/VLpXtKckgWuyScYK6cSPaw==}
+
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
@@ -2255,6 +2338,9 @@ packages:
 
   '@types/opossum@8.1.9':
     resolution: {integrity: sha512-Jm/tYxuJFefiwRYs+/EOsUP3ktk0c8siMgAHPLnA4PXF4wKghzcjqf88dY+Xii5jId5Txw4JV0FMKTpjbd7KJA==}
+
+  '@types/pg@8.20.0':
+    resolution: {integrity: sha512-bEPFOaMAHTEP1EzpvHTbmwR8UsFyHSKsRisLIHVMXnpNefSbGA1bD6CVy+qKjGSqmZqNqBDV2azOBo8TgkcVow==}
 
   '@types/qrcode@1.5.6':
     resolution: {integrity: sha512-te7NQcV2BOvdj2b1hCAHzAoMNuj65kNBMz0KBaxM6c3VGBOhU0dURQKOtH8CFNI/dsKkwlv32p26qYQTWoB5bw==}
@@ -3668,6 +3754,15 @@ packages:
   focus-trap@7.8.0:
     resolution: {integrity: sha512-/yNdlIkpWbM0ptxno3ONTuf+2g318kh2ez3KSeZN5dZ8YC6AAmgeWz+GasYYiBJPFaYcSAPeu4GfhUaChzIJXA==}
 
+  follow-redirects@1.16.0:
+    resolution: {integrity: sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+
   for-each@0.3.5:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
     engines: {node: '>= 0.4'}
@@ -3887,6 +3982,10 @@ packages:
   headers-polyfill@5.0.1:
     resolution: {integrity: sha512-1TJ6Fih/b8h5TIcv+1+Hw0PDQWJTKDKzFZzcKOiW1wJza3XoAQlkCuXLbymPYB8+ZQyw8mHvdw560e8zVFIWyA==}
 
+  helmet@8.2.0:
+    resolution: {integrity: sha512-DRgTIUgnWcJ62KyarxxziuqYxKGnR6Rgg19BlbucN/dpmJbl1XOit6qvoOX0ZT+HhWe5OUVhU/a1zpGyc1xA0Q==}
+    engines: {node: '>=18.0.0'}
+
   hermes-estree@0.25.1:
     resolution: {integrity: sha512-0wUoCcLp+5Ev5pDW2OriHC2MJCbwLwuRx+gAqMTOkGKJJiBCLjtrvy4PWUGn6MIVefecRpzoOZ/UV6iGdOr+Cw==}
 
@@ -3916,6 +4015,14 @@ packages:
   http-errors@2.0.1:
     resolution: {integrity: sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==}
     engines: {node: '>= 0.8'}
+
+  http-proxy-middleware@3.0.7:
+    resolution: {integrity: sha512-iwbQltVlx8bCrqePUM8C+hllHvdawVhQJaLrj1X7qllkvFQdXFsr16pW/mo9+JDVjN+QO2XUx9jd8SmoFkE5qw==}
+    engines: {node: ^14.18.0 || ^16.10.0 || >=18.0.0}
+
+  http-proxy@1.18.1:
+    resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
+    engines: {node: '>=8.0.0'}
 
   https-proxy-agent@7.0.6:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
@@ -4099,6 +4206,10 @@ packages:
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
+
+  is-plain-object@5.0.0:
+    resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
+    engines: {node: '>=0.10.0'}
 
   is-promise@4.0.0:
     resolution: {integrity: sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==}
@@ -4927,6 +5038,40 @@ packages:
     resolution: {integrity: sha512-//nshmD55c46FuFw26xV/xFAaB5HF9Xdap7HJBBnrKdAd6/GxDBaNA1870O79+9ueg61cZLSVc+OaFlfmObYVQ==}
     engines: {node: '>= 14.16'}
 
+  pg-cloudflare@1.4.0:
+    resolution: {integrity: sha512-Vo7z/6rrQYxpNRylp4Tlob2elzbh+N/MOQbxFVWCxS7oEx6jF53GTJFxK2WWpKuBRkmiin4Mt+xofFDjx09R0A==}
+
+  pg-connection-string@2.14.0:
+    resolution: {integrity: sha512-XwWDGcLRGCXAR8F/AM5bG7Q+A3Wm2s6QeEjlOKZLlH3UYcguiqCWKyWXVag5TLTIjR7oOJUY8kcADaZgWPyLeg==}
+
+  pg-int8@1.0.1:
+    resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
+    engines: {node: '>=4.0.0'}
+
+  pg-pool@3.14.0:
+    resolution: {integrity: sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==}
+    peerDependencies:
+      pg: '>=8.0'
+
+  pg-protocol@1.15.0:
+    resolution: {integrity: sha512-cq9sECI5s0+uPUXjbz8ioyPJni6RzsRib0US67i5IoTZKw8fNeYlVE7u8F4dG7vEJJtc5wdD1K189lCCUwqWTQ==}
+
+  pg-types@2.2.0:
+    resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
+    engines: {node: '>=4'}
+
+  pg@8.22.0:
+    resolution: {integrity: sha512-8wih1vVIBMxoUM2oB4soJsD9tDnDpLv4OXBJ+EJzFsvycD+lfyIreC2gGHq78f8jbLLt+bvlPTFdFZfJkOuzAA==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      pg-native: '>=3.0.1'
+    peerDependenciesMeta:
+      pg-native:
+        optional: true
+
+  pgpass@1.0.5:
+    resolution: {integrity: sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -4965,6 +5110,22 @@ packages:
   postcss@8.5.16:
     resolution: {integrity: sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==}
     engines: {node: ^10 || ^12 || >=14}
+
+  postgres-array@2.0.0:
+    resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
+    engines: {node: '>=4'}
+
+  postgres-bytea@1.0.1:
+    resolution: {integrity: sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ==}
+    engines: {node: '>=0.10.0'}
+
+  postgres-date@1.0.7:
+    resolution: {integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==}
+    engines: {node: '>=0.10.0'}
+
+  postgres-interval@1.2.0:
+    resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
+    engines: {node: '>=0.10.0'}
 
   powershell-utils@0.1.0:
     resolution: {integrity: sha512-dM0jVuXJPsDN6DvRpea484tCUaMiXWjuCn++HGTqUWzGDjv5tZkEZldAJ/UMlqRYGFrD/etByo4/xOuC/snX2A==}
@@ -5177,6 +5338,9 @@ packages:
   require-main-filename@2.0.0:
     resolution: {integrity: sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==}
 
+  requires-port@1.0.0:
+    resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+
   reserved-identifiers@1.2.0:
     resolution: {integrity: sha512-yE7KUfFvaBFzGPs5H3Ops1RevfUEsDc5Iz65rOwWg4lE8HJSYtle77uul3+573457oHvBKuHYDl/xqUkKpEEdw==}
     engines: {node: '>=18'}
@@ -5358,6 +5522,10 @@ packages:
 
   sparse-bitfield@3.0.3:
     resolution: {integrity: sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==}
+
+  split2@4.2.0:
+    resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
+    engines: {node: '>= 10.x'}
 
   stable-hash@0.0.5:
     resolution: {integrity: sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==}
@@ -5970,6 +6138,10 @@ packages:
   wsl-utils@0.3.1:
     resolution: {integrity: sha512-g/eziiSUNBSsdDJtCLB8bdYEUMj4jR7AGeUo96p/3dTafgjHhpF4RiCFPiRILwjQoDXx5MqkBr4fwWtR3Ky4Wg==}
     engines: {node: '>=20'}
+
+  xtend@4.0.2:
+    resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
+    engines: {node: '>=0.4'}
 
   y18n@4.0.3:
     resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
@@ -8296,6 +8468,10 @@ snapshots:
     dependencies:
       '@types/node': 22.20.0
 
+  '@types/cors@2.8.19':
+    dependencies:
+      '@types/node': 22.20.0
+
   '@types/d3-array@3.2.2': {}
 
   '@types/d3-color@3.1.3': {}
@@ -8350,6 +8526,10 @@ snapshots:
 
   '@types/http-errors@2.0.5': {}
 
+  '@types/http-proxy@1.17.17':
+    dependencies:
+      '@types/node': 22.20.0
+
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
@@ -8373,6 +8553,12 @@ snapshots:
   '@types/opossum@8.1.9':
     dependencies:
       '@types/node': 22.20.0
+
+  '@types/pg@8.20.0':
+    dependencies:
+      '@types/node': 20.19.43
+      pg-protocol: 1.15.0
+      pg-types: 2.2.0
 
   '@types/qrcode@1.5.6':
     dependencies:
@@ -8938,6 +9124,36 @@ snapshots:
     optionalDependencies:
       mongodb: 6.21.0
       next: 16.2.0-canary.59(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      vitest: 3.2.7(@types/debug@4.1.13)(@types/node@20.19.43)(jiti@2.7.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@20.19.43)(typescript@5.9.3))(tsx@4.23.0)(yaml@2.9.0)
+      vue: 3.5.39(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@cloudflare/workers-types'
+      - '@opentelemetry/api'
+
+  better-auth@1.6.23(@opentelemetry/api@1.9.1)(mongodb@6.21.0)(pg@8.22.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vitest@3.2.7(@types/debug@4.1.13)(@types/node@20.19.43)(jiti@2.7.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@20.19.43)(typescript@5.9.3))(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.39(typescript@5.9.3)):
+    dependencies:
+      '@better-auth/core': 1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0)
+      '@better-auth/drizzle-adapter': 1.6.23(@better-auth/core@1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0))(@better-auth/utils@0.4.2)
+      '@better-auth/kysely-adapter': 1.6.23(@better-auth/core@1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0))(@better-auth/utils@0.4.2)(kysely@0.29.2)
+      '@better-auth/memory-adapter': 1.6.23(@better-auth/core@1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0))(@better-auth/utils@0.4.2)
+      '@better-auth/mongo-adapter': 1.6.23(@better-auth/core@1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0))(@better-auth/utils@0.4.2)(mongodb@6.21.0)
+      '@better-auth/prisma-adapter': 1.6.23(@better-auth/core@1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0))(@better-auth/utils@0.4.2)
+      '@better-auth/telemetry': 1.6.23(@better-auth/core@1.6.23(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(@opentelemetry/api@1.9.1)(better-call@1.3.7(zod@4.4.3))(jose@6.2.3)(kysely@0.29.2)(nanostores@1.4.0))(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)
+      '@better-auth/utils': 0.4.2
+      '@better-fetch/fetch': 1.3.1
+      '@noble/ciphers': 2.2.0
+      '@noble/hashes': 2.2.0
+      better-call: 1.3.7(zod@4.4.3)
+      defu: 6.1.7
+      jose: 6.2.3
+      kysely: 0.29.2
+      nanostores: 1.4.0
+      zod: 4.4.3
+    optionalDependencies:
+      mongodb: 6.21.0
+      pg: 8.22.0
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
       vitest: 3.2.7(@types/debug@4.1.13)(@types/node@20.19.43)(jiti@2.7.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@20.19.43)(typescript@5.9.3))(tsx@4.23.0)(yaml@2.9.0)
@@ -9774,6 +9990,11 @@ snapshots:
 
   expect-type@1.4.0: {}
 
+  express-rate-limit@8.5.2(express@4.22.2):
+    dependencies:
+      express: 4.22.2
+      ip-address: 10.2.0
+
   express-rate-limit@8.5.2(express@5.2.1):
     dependencies:
       express: 5.2.1
@@ -9958,6 +10179,10 @@ snapshots:
   focus-trap@7.8.0:
     dependencies:
       tabbable: 6.5.0
+
+  follow-redirects@1.16.0(debug@4.4.3):
+    optionalDependencies:
+      debug: 4.4.3
 
   for-each@0.3.5:
     dependencies:
@@ -10239,6 +10464,8 @@ snapshots:
       '@types/set-cookie-parser': 2.4.10
       set-cookie-parser: 3.1.1
 
+  helmet@8.2.0: {}
+
   hermes-estree@0.25.1: {}
 
   hermes-parser@0.25.1:
@@ -10264,6 +10491,25 @@ snapshots:
       setprototypeof: 1.2.0
       statuses: 2.0.2
       toidentifier: 1.0.1
+
+  http-proxy-middleware@3.0.7:
+    dependencies:
+      '@types/http-proxy': 1.17.17
+      debug: 4.4.3
+      http-proxy: 1.18.1(debug@4.4.3)
+      is-glob: 4.0.3
+      is-plain-object: 5.0.0
+      micromatch: 4.0.8
+    transitivePeerDependencies:
+      - supports-color
+
+  http-proxy@1.18.1(debug@4.4.3):
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.16.0(debug@4.4.3)
+      requires-port: 1.0.0
+    transitivePeerDependencies:
+      - debug
 
   https-proxy-agent@7.0.6:
     dependencies:
@@ -10420,6 +10666,8 @@ snapshots:
   is-obj@3.0.0: {}
 
   is-plain-obj@4.1.0: {}
+
+  is-plain-object@5.0.0: {}
 
   is-promise@4.0.0: {}
 
@@ -11335,6 +11583,41 @@ snapshots:
 
   pathval@2.0.1: {}
 
+  pg-cloudflare@1.4.0:
+    optional: true
+
+  pg-connection-string@2.14.0: {}
+
+  pg-int8@1.0.1: {}
+
+  pg-pool@3.14.0(pg@8.22.0):
+    dependencies:
+      pg: 8.22.0
+
+  pg-protocol@1.15.0: {}
+
+  pg-types@2.2.0:
+    dependencies:
+      pg-int8: 1.0.1
+      postgres-array: 2.0.0
+      postgres-bytea: 1.0.1
+      postgres-date: 1.0.7
+      postgres-interval: 1.2.0
+
+  pg@8.22.0:
+    dependencies:
+      pg-connection-string: 2.14.0
+      pg-pool: 3.14.0(pg@8.22.0)
+      pg-protocol: 1.15.0
+      pg-types: 2.2.0
+      pgpass: 1.0.5
+    optionalDependencies:
+      pg-cloudflare: 1.4.0
+
+  pgpass@1.0.5:
+    dependencies:
+      split2: 4.2.0
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.2: {}
@@ -11367,6 +11650,16 @@ snapshots:
       nanoid: 3.3.15
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  postgres-array@2.0.0: {}
+
+  postgres-bytea@1.0.1: {}
+
+  postgres-date@1.0.7: {}
+
+  postgres-interval@1.2.0:
+    dependencies:
+      xtend: 4.0.2
 
   powershell-utils@0.1.0: {}
 
@@ -11695,6 +11988,8 @@ snapshots:
 
   require-main-filename@2.0.0: {}
 
+  requires-port@1.0.0: {}
+
   reserved-identifiers@1.2.0: {}
 
   resolve-from@4.0.0: {}
@@ -12011,6 +12306,8 @@ snapshots:
   sparse-bitfield@3.0.3:
     dependencies:
       memory-pager: 1.5.0
+
+  split2@4.2.0: {}
 
   stable-hash@0.0.5: {}
 
@@ -12691,6 +12988,8 @@ snapshots:
     dependencies:
       is-wsl: 3.1.1
       powershell-utils: 0.1.0
+
+  xtend@4.0.2: {}
 
   y18n@4.0.3: {}
 
