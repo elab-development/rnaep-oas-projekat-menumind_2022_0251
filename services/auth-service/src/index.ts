@@ -1,6 +1,7 @@
 import { toNodeHandler } from "better-auth/node";
 import express, { Request, Response } from "express";
 import { auth, pool } from "./auth.js";
+import { setupMetrics } from "./lib/metrics.js";
 import { seedUsers } from "./seed.js";
 
 const PORT = Number(process.env.PORT || 4001);
@@ -17,6 +18,8 @@ app.get("/health", async (_req: Request, res: Response) => {
       .json({ status: "degraded", service: "auth-service", db: "down" });
   }
 });
+
+setupMetrics(app, "auth-service");
 
 app.all("/api/auth/*", toNodeHandler(auth));
 

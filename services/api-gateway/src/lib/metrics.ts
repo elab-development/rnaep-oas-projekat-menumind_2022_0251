@@ -1,8 +1,7 @@
 import type { Express } from "express";
 import client from "prom-client";
-import type CircuitBreaker from "opossum";
 
-export function setupMetrics(app: Express, serviceName: string) {
+export function setupMetrics(app: Express, serviceName: string): void {
   client.collectDefaultMetrics({ labels: { service: serviceName } });
 
   const httpRequestDuration = new client.Histogram({
@@ -27,33 +26,5 @@ export function setupMetrics(app: Express, serviceName: string) {
   app.get("/metrics", async (_req, res) => {
     res.set("Content-Type", client.register.contentType);
     res.end(await client.register.metrics());
-  });
-}
-
-
-export function trackBreaker(
-  breaker: CircuitBreaker<unknown[], unknown>,
-  name: string,
-) {
-  const gauge =
-    client.register.getSingleMetric("circuit_breaker_state") ??
-    new client.Gauge({
-      name: "circuit_breaker_state",
-      help: "Circuit breaker state (0=closed, 1=half-open, 2=open)",
-      labelNames: ["breaker"],
-    });
-  const g = gauge as client.Gauge<string>;
-  g.set({ breaker: name }, 0);
-  breaker.on("open", () => {
-    g.set({ breaker: name }, 2);
-    console.warn(`[breaker:${name}] OPEN`);
-  });
-  breaker.on("halfOpen", () => {
-    g.set({ breaker: name }, 1);
-    console.warn(`[breaker:${name}] HALF-OPEN`);
-  });
-  breaker.on("close", () => {
-    g.set({ breaker: name }, 0);
-    console.log(`[breaker:${name}] CLOSED`);
   });
 }

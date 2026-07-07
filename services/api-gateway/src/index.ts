@@ -3,6 +3,7 @@ import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import { setupMetrics } from "./lib/metrics.js";
 import { buildRoutes } from "./routes.js";
 import { DEFAULT_ALLOWED, originCheck } from "./security.js";
 
@@ -37,6 +38,7 @@ app.use(
 );
 
 app.use(originCheck(DEFAULT_ALLOWED));
+setupMetrics(app, "api-gateway");
 
 const routes = buildRoutes();
 
