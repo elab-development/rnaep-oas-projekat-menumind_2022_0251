@@ -1,4 +1,5 @@
 import express from "express";
+import { setupMetrics } from "./lib/metrics.js";
 import { pingDb } from "./mongo.js";
 import { chatRouter } from "./routes/chat.js";
 
@@ -7,19 +8,19 @@ const app = express();
 app.disable("x-powered-by");
 app.use(express.json({ limit: "1mb" }));
 
+setupMetrics(app, "recommendation-service");
+
 app.get("/health", async (_req, res) => {
-    try {
-        await pingDb();
-        res.json({ status: "ok", service: "recommendation-service", db: "up" });
-    } catch {
-        res
-      .status(503)
-      .json({
-        status: "degraded",
-        service: "recommendation-service",
-        db: "down",
+  try {
+    await pingDb();
+    res.json({ status: "ok", service: "recommendation-service", db: "up" });
+  } catch {
+    res.status(503).json({
+      status: "degraded",
+      service: "recommendation-service",
+      db: "down",
     });
-}
+  }
 });
 
 app.use("/api/chat", chatRouter);
