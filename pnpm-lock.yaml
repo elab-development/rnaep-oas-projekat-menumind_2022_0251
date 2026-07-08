@@ -103,6 +103,40 @@ importers:
         specifier: ^3.2.4
         version: 3.2.7(@types/debug@4.1.13)(@types/node@20.19.43)(jiti@2.7.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@20.19.43)(typescript@5.9.3))(tsx@4.23.0)(yaml@2.9.0)
 
+  services/analytics-service:
+    dependencies:
+      express:
+        specifier: ^4.22.2
+        version: 4.22.2
+      kafkajs:
+        specifier: ^2.2.4
+        version: 2.2.4
+      mongodb:
+        specifier: ^6.21.0
+        version: 6.21.0
+      opossum:
+        specifier: ^8.5.0
+        version: 8.5.0
+      prom-client:
+        specifier: ^15.1.3
+        version: 15.1.3
+    devDependencies:
+      '@types/express':
+        specifier: ^4.17.25
+        version: 4.17.25
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.0
+      '@types/opossum':
+        specifier: ^8.1.9
+        version: 8.1.9
+      tsx:
+        specifier: ^4.19.2
+        version: 4.23.0
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
   services/api-gateway:
     dependencies:
       cors:
