@@ -160,7 +160,7 @@ services/
   recommendation-service/  AI chat + Kafka processor + MongoDB
   analytics-service/    Kafka consumer (5 topics) + MongoDB + exchange rates
   notification-service/ Kafka consumer/producer + MongoDB
-  media-service/        Cloudinary signing (stateless)
+  media-service/        Cloudinary signing - stateless
 monitoring/             Prometheus config + Grafana provisioning & dashboard
 docker-compose.yml      the entire system (docker compose up)
 ```
