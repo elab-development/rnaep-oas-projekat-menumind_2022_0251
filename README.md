@@ -162,7 +162,7 @@ services/
   notification-service/ Kafka consumer/producer + MongoDB
   media-service/        Cloudinary signing (stateless)
 monitoring/             Prometheus config + Grafana provisioning & dashboard
-docker-compose.yml      the entire system: docker compose up
+docker-compose.yml      the entire system (docker compose up)
 ```
 
 ## API documentation
